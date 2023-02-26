@@ -59,10 +59,13 @@
 
     <!-- Use this Select Tag for Filtering the Products  -->
     <select id="filter">
-      <option value="">Filter By Category</option>
-      <option value="Laptop">Laptop</option>
-      <option value="Mobile">Mobile</option>
-      <option value="Speakers">Speakers</option>
+      <option value="">Filter By price</option>
+      <option value="Black">Black</option>
+      <option value="Latte">Latte</option>
+      <option value="Cappuccino">Cappuccino</option>
+      <option value="Americano">Americano</option>
+      <option value="Cortado">Cortado</option>
+      
     </select>
     <div id="product-container">
       <!-- Here Append All the Products  -->
@@ -73,7 +76,7 @@
     async function FetchData() {
       try {
         let res = await fetch(
-          "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-tech-products"
+          "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee"
         );
         res = await res.json();
         FilterData(res.data);
@@ -93,7 +96,7 @@
         DisplayData(data);
       } else {
         data = data.filter((ele) => {
-          return ele.category == filterby.value;
+          return ele.title == filterby.value;
         });
         DisplayData(data);
       }
@@ -112,11 +115,11 @@
         let Price = document.createElement("h3");
         let Detail = document.createElement("p");
         let AddtoCart = document.createElement("button");
-        Image.src = product.img;
-        Brand.textContent = product.brand;
-        Category.textContent = product.category;
+        Image.src = product.image;
+        Brand.textContent = product.description;
+        Category.textContent = product.title;
         Price.textContent = `₹${product.price}`;
-        Detail.textContent = product.details;
+        Detail.textContent = product.ingredients;
         AddtoCart.textContent = "Add To Cart";
 
         AddtoCart.addEventListener("click", () => {
@@ -129,7 +132,7 @@
           }
         });
 
-        Card.append(Image, Brand, Price, Detail, Category, AddtoCart);
+        Card.append(Image, Brand, Detail,Price, Category, AddtoCart);
         Container.append(Card);
       });
 

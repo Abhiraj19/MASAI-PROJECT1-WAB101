@@ -9,18 +9,21 @@
   <style>
     /* Write all necessery css here  */
     .nav {
+        width:100%;
+        height:100px;
         display: flex;
         align-items: center;
         justify-content: space-around;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        font-size: 45px;
         
       }
       form{
       
-        width: 30%;
+        width: 40%;
         margin:auto;
         margin-top: 100px;
-        height: 650px;
+        height: 400px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         
 
@@ -72,40 +75,29 @@
 </head>
 
 <body>
-  <div class="nav">
-    <a href="./index.html">signin</a>
-    <a href="./signin.html">signup</a>
-  </div>
+    <div class="nav">
+        <h1 >WEAR WHAT YOU LOVE</h1>
+
+        
+
+      </div>
   <div id="signup">
-    <h1>Please Enter Your Details</h1>
+    <h1 style="text-align: center;font-size: 70px;">Please Enter Your Details</h1>
     <form>
       <input type="text" id="name" placeholder="Name">
       <input type="email" id="email" placeholder="Email">
       <input type="password"  id="password" placeholder="Password">
-      <input type="submit" value="Login" />
+      <input style="text-align: center;" id="login" type="click" value="Login" />
     </form>
   </div>
 </body>
 <script>
-  let formdata=document.querySelector("form");
-  let name=document.getElementById("name");
-  let password=document.getElementById("password");
-  let email=document.getElementById("email");
-  let globalarr=JSON.parse(localStorage.getItem("account-data"))||[];
-
-  formdata.addEventListener("submit",function(e){
-    e.preventDefault();
-    let obj={
-      "name":name.value,
-      "password":password.value,
-      "email":email.value,
-    }
-    console.log(obj);
-    globalarr.push(obj);
-    localStorage.setItem("account-data",JSON.stringify(globalarr));
+    let login=document.getElementById("login");
+    login.addEventListener("click",()=>{
+        location.href="index.html"
+    })
 
 
-  })
 </script>
 
 

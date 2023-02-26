@@ -58,12 +58,7 @@
       </div>
 
     <!-- Use this Select Tag for Filtering the Products  -->
-    <select id="filter">
-      <option value="">Filter By Category</option>
-      <option value="Laptop">Laptop</option>
-      <option value="Mobile">Mobile</option>
-      <option value="Speakers">Speakers</option>
-    </select>
+   
     <div id="product-container">
       <!-- Here Append All the Products  -->
     </div>
@@ -73,10 +68,10 @@
     async function FetchData() {
       try {
         let res = await fetch(
-          "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-tech-products"
-        );
+          "https://63fb4a252027a45d8d63b8c0.mockapi.io/Products/Products12");
+        
         res = await res.json();
-        FilterData(res.data);
+        DisplayData(res);
         //  console.log(data)
       } catch (err) {
         console.log("error", err);
@@ -84,21 +79,8 @@
     }
 
     FetchData();
-    let filterby = document.getElementById("filter");
-    filterby.addEventListener("change", () => {
-      FetchData();
-    });
-    function FilterData(data) {
-      if (filterby.value === "") {
-        DisplayData(data);
-      } else {
-        data = data.filter((ele) => {
-          return ele.category == filterby.value;
-        });
-        DisplayData(data);
-      }
-      // console.log("data",data)
-    }
+    
+    
     let Cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     let Container = document.getElementById("product-container");
@@ -113,6 +95,7 @@
         let Detail = document.createElement("p");
         let AddtoCart = document.createElement("button");
         Image.src = product.img;
+
         Brand.textContent = product.brand;
         Category.textContent = product.category;
         Price.textContent = `₹${product.price}`;
